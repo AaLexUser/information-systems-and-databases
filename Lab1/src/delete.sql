@@ -1,0 +1,11 @@
+DROP TABLE personJobs;
+DROP TABLE jobs;
+DROP TABLE majors;
+DROP TABLE persononphoto;
+DROP TABLE photos;
+DROP TABLE sizes;
+DROP TABLE personliveinapartment;
+DROP TABLE rooms;
+DROP TABLE apartments;
+DROP TABLE roomtypes;
+DROP TABLE people;
