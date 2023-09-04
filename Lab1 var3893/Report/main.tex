@@ -33,7 +33,7 @@
     \textbf{Лабораторная работа №1}\\
     по дисциплине\\
     \textbf{'Информационные системы и базы данных'}\\
-    \textbf{Вариант 2512}
+    \textbf{Вариант 3893}
 \end{center}
 
 \vspace{2cm}
@@ -42,7 +42,7 @@
   Выполнил Студент  группы P32101\\
   \textbf{Лапин Алексей Александрович}\\
   Преподаватель: \\
-  \textbf{Гаврилов Антон Валерьевич}\\
+  \textbf{Блохина Елена Николаевна}\\
 \end{flushright}
 
 \vspace{6cm}
@@ -78,26 +78,32 @@ psql -h pg -d studs \\
   \item Выводы по работе.
 \end{enumerate}
 \section{Описание предметной области.}
-Чередуя угрозы и обещания, Хэлворсену удалось наконец отправить восвояси свою настойчивую наследницу и ввести Флойда в кабинет. Служебные апартаменты администратора представляли собой квадратное помещение размером 4,5 на 4,5 метра, но оно каким-то образом вмещало все обычные атрибуты и признаки персоны министерского ранга с годовым окладом в пятьдесят тысяч долларов. Одну стену украшали фотографии с автографами видных политических деятелей вплоть до президента США и генерального секретаря ООН; большую часть другой стены покрывали фотографии прославленных астронавтов, также с автографами. 
-
+Он не стал дожидаться ответа и правильно сделал. Сирэйнис даже не пошевельнулась, но он тотчас же почувствовал, что его тело перестает ему повиноваться. Сила, столкнувшаяся с его волей, оказалась куда более могущественной, чем он ожидал, и это навело его на мысль, что Сирэйнис, возможно, помогало огромное число людей. Беспомощно повлекся он обратно к дому, и на какой-то ужасный момент ему даже подумалось, что великолепный его план провалился.\\
+\textbf{Творческий пересказ:}\\
+Люди хотят достичь некоторых целей. Для достижения целей, люди строят планы, которые состоят из определенного набора шагов разной сложности. Чтобы преодолеть сложности на своём пути люди обладают силой воли и поддержкой других людей. Так же у людей есть свой дом или несколько домов, где они живут с другими жильцами, которые могут быть им родственниками , друзьями, а порой даже врагами. 
 \section{Список сущностей и их классификацию (стержневая, ассоциация, характеристика).}
+% Please add the following required packages to your document preamble:
+% \usepackage{longtable}
+% Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
 \begin{longtable}{|l|l|l|}
   \hline
-  \textbf{Сущность}     & \textbf{Аттрибуты}                         & \textbf{Вид}   \\ \hline
+  \textbf{Сущность} & \textbf{Аттрибуты}                                     & \textbf{Вид}   \\ \hline
   \endfirsthead
   %
   \endhead
   %
-  People                & name, gender                               & стержневая     \\ \hline
-  Apartments            & location                                   & стержневая     \\ \hline
-  Rooms                 & apartment(id), roomtype(id), lenght, width & стержневая     \\ \hline
-  RoomTypes             & name, gender                               & характеристика \\ \hline
-  Photos                & room(id), size(id)                         & стержневая     \\ \hline
-  Sizes                 & name, lenght, wiidth                       & характеристика \\ \hline
-  Jobs                  & major(id), name, companyName, annualSalary & стержневая     \\ \hline
-  Majors                & name                                       & характеристика \\ \hline
-  PersonOnPhoto         & person(id), photo(id), signatureOnPhoto    & ассоциация     \\ \hline
-\end{longtable}
+  People            & id, name, willpower, gender                            & стержневая     \\ \hline
+  Houses            & id, location, houseType(Id)                            & стержневая     \\ \hline
+  HouseTypes        & id, name                                               & характеристика \\ \hline
+  Relationships     & person1(id), person2(id), relationType(id), lastEditedDate & ассоциация     \\ \hline
+  RelationshipTypes & id, name                                               & характеристика \\ \hline
+  Plans             & id, owner(id), status(id)                              & стержневая     \\ \hline
+  Steps             & id, plan(id), difficulty(id), description              & стержневая     \\ \hline
+  Difficulties      & id, name, power                                        & характеристика \\ \hline
+  Goal              & id, name                                               & стержневая     \\ \hline
+  Support           & supporter(id), plan(id), supportPower                  & ассоциация     \\ \hline
+  Statuses          & id, name                                               & характеристика \\ \hline
+  \end{longtable}
 \section{Инфологическая модель}
 \includegraphics[width=\textwidth]{image/Infological-model.png}
 \section{Даталогическая модель}
