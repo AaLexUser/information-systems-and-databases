@@ -31,7 +31,7 @@
 
 
 \begin{center}
-    \textbf{ДОП по Лабораторная работа №1}\\
+    \textbf{Дополнительное задание к лабораторной работе №1}\\
     по дисциплине\\
     \textbf{'Информационные системы и базы данных'}\\
     \textbf{Вариант 3893}
@@ -43,7 +43,7 @@
   Выполнил Студент  группы P32101\\
   \textbf{Лапин Алексей Александрович}\\
   Преподаватель: \\
-  \textbf{Блохина Елена Николаевна}\\
+  \textbf{Сагайдак Алина Алексеевна}\\
 \end{flushright}
 
 \vspace{6cm}
@@ -152,7 +152,7 @@
           {Я}{{\selectfont\char223}}1
 }
 \subsection{Query:}
-\lstinputlisting[style=sql]{../src/dop-1-query.sql}
+\lstinputlisting[style=sql]{../dop-1-query.sql}
 \subsection{Result:}
 \begin{verbatim}
   name
@@ -164,12 +164,24 @@
 \end{verbatim}
 \subsection{Code:}
 \paragraph*{Создание таблиц:}
-\lstinputlisting[style=sql]{../src/tables.sql}
+\lstinputlisting[style=sql]{../../Lab1 var3893/src/tables.sql}
 \paragraph*{Удаление таблиц:}
-\lstinputlisting[style=sql]{../src/delete.sql}
+\lstinputlisting[style=sql]{../../Lab1 var3893/src/delete.sql}
 \paragraph*{Заполнение тестовых значений:}
+\lstinputlisting[style=sql]{../../Lab1 var3893/src/values.sql}
+\section{Задание 2.}
+\subsection{Инфологическая модель}
+\includegraphics[width=\textwidth]{image/dop-2-infological-model.png}
+\subsection{Даталогическая модель}
+\includegraphics[width=\textwidth]{image/dop-2-datalogical-model.png}
+\section{Реализация даталогической модели на SQL.}
+\subsection*{Создание таблиц:}
+\lstinputlisting[style=sql]{../src/tables.sql}
+\subsection*{Удаление таблиц:}
+\lstinputlisting[style=sql]{../src/delete.sql}
+\subsection*{Заполнение тестовых значений:}
 \lstinputlisting[style=sql]{../src/values.sql}
 \section{Вывод}
-В ходе выполнения лабораторной работы были изученны сущности и их классификация,
+В ходе выполнения дополнительного задания к лабораторной работе были изучены составление больших запросов,
 инфологическая модель, даталогическая модель, основы PostgreSQL.
 \end{document}
