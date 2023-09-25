@@ -19,3 +19,5 @@ Thumbs.db
 .$*
 # JetBrains
 */.idea
+#VS Code
+.vscode
