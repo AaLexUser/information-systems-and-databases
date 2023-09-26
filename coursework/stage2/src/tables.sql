@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS pokemonToTypes(
 
 CREATE TABLE IF NOT EXISTS stoneWiki(
     entityID       integer           PRIMARY KEY REFERENCES entities(id) ON DELETE CASCADE,
-    name           varchar(32)       NOT NULL UNIQUE
+    name           varchar(32)       UNIQUE NOT NULL CHECK ( name ~* '^[a-zé\s]+$')
 );
 
 CREATE TABLE IF NOT EXISTS evolutionChains(
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS inStock(
     id       serial            PRIMARY KEY,
     entityID integer           NOT NULL REFERENCES entities(id) ON DELETE CASCADE,
     quantity integer           NOT NULL CHECK ( quantity >= 0),
-    price    integer           NOT NULL CHECK ( price >= 0)
+    price    money             NOT NULL CHECK ( price >= CAST(0 AS money))
 );
 
 CREATE TABLE IF NOT EXISTS gameStylesDist(
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS orders(
     id          serial           PRIMARY KEY,
     trainerID   integer          NOT NULL REFERENCES trainers(id) ON DELETE CASCADE,
     statusID    integer          REFERENCES orderStatuses(id) ON DELETE SET NULL,
-    totalPrice  integer          NOT NULL CHECK ( totalPrice >= 0),
+    totalPrice  money            NOT NULL CHECK ( totalPrice >= CAST(0 AS money)),
     orderDate   date             NOT NULL CHECK (orderDate <= CURRENT_DATE)
 );
 
