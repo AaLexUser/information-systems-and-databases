@@ -94,8 +94,8 @@ CREATE TABLE IF NOT EXISTS orders(
     id          serial           PRIMARY KEY,
     trainerID   integer          NOT NULL REFERENCES trainers(id) ON DELETE CASCADE,
     statusID    integer          REFERENCES orderStatuses(id) ON DELETE SET NULL,
-    totalPrice  money            NOT NULL CHECK ( totalPrice >= CAST(0 AS money)),
-    orderDate   date             NOT NULL CHECK (orderDate <= CURRENT_DATE)
+    totalPrice  money            NOT NULL CHECK ( totalPrice >= CAST(0 AS money)) DEFAULT CAST(0 AS money),
+    orderDate   date             NOT NULL CHECK (orderDate <= CURRENT_DATE) DEFAULT CURRENT_DATE
 );
 
 CREATE TABLE IF NOT EXISTS "orderItems"(

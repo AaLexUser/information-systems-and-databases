@@ -246,16 +246,21 @@ INSERT INTO orderStatuses values (DEFAULT, 'COMPLETED');
 DO $$
 BEGIN
     FOR i IN 1..30 LOOP
-        INSERT INTO orders values (DEFAULT, floor(random() * 2 + 1)::integer, floor(random() * 3 + 1)::integer, random() * 100::money, '2020-03-12');
+        INSERT INTO orders values (DEFAULT, floor(random() * 2 + 1)::integer, floor(random() * 3 + 1)::integer, DEFAULT, DEFAULT);
     END LOOP;
 END$$;
 
 DO $$
 BEGIN
     FOR i IN 1..30 LOOP
-        INSERT INTO "orderItems" values (i, floor(random() * 30 + 1)::integer, 1);
+        FOR j IN 1..floor(random() * 30 + 1)::integer LOOP
+                INSERT INTO "orderItems" values (i, j, floor(random() * 5 + 1)::integer);
+        END LOOP;
     END LOOP;
 END$$;
+
+INSERT INTO "orderItems" values (22, 28, 2);
+
 
 
 
