@@ -1,0 +1,27 @@
+
+
+функции
+добавить тренера
+добавить покемона
+добавить эволюцинную цепочку
+добавить камень
+добавить заказ
+добавить новый id в заказ
+
+узнать статус заказа
+добавить заказу статус
+выяснить тип покемона
+проверка есть ли товар в количестве x штук
+уменьшить количество товара
+увеличить количество товара
+
+
+SELECT * FROM "orderItems" JOIN instock on instock.entityid = "orderItems".itemid;
+
+
+                                                WHERE "orderItems".orderid = NEW.orderid
+                                                AND instock.entityid = NEW.itemid
+                                                GROUP BY "orderItems".orderid)
+                                                WHERE "orders".id = NEW.orderid;
+
+

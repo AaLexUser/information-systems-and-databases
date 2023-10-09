@@ -224,7 +224,7 @@ INSERT INTO evolutionchains values (29, 30, 1101);
 INSERT INTO instock values (DEFAULT, 1, 2, 100);
 DO $$
 BEGIN
-    FOR i IN 1..30 LOOP
+    FOR i IN 2..30 LOOP
         INSERT INTO instock values (DEFAULT, i,  floor(random() * 101)::integer, (floor(random() * 101)::numeric + 100)::money);
     END LOOP;
 END$$;
