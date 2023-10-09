@@ -11,12 +11,8 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE TRIGGER totalPriceTrigger
-AFTER INSERT ON "orderItems"
-FOR EACH ROW EXECUTE PROCEDURE updateTotalPrice();
-
-CREATE OR REPLACE TRIGGER totalItemQuantityTrigger
 BEFORE INSERT ON "orderItems"
-FOR EACH ROW EXECUTE PROCEDURE updateTotalItemQuantity();
+FOR EACH ROW EXECUTE PROCEDURE updateTotalPrice();
 
 CREATE OR REPLACE FUNCTION updateTotalItemQuantity() RETURNS TRIGGER AS $$
 BEGIN

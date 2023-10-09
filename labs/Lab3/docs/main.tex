@@ -1,0 +1,205 @@
+\documentclass[12pt,onecolumn]{article}
+\usepackage[utf8]{inputenc} % UTF8 input encoding
+\usepackage[T2A]{fontenc}   % T2A font encoding for Cyrillic script
+\usepackage[russian]{babel} % Russian language support
+\usepackage{listings}
+\usepackage{float}
+\usepackage{mathtools}
+\usepackage{longtable}
+\usepackage{multicol}
+\usepackage{lipsum}
+\everymath{\displaystyle}
+\usepackage{listings} 
+\usepackage[usenames]{color}
+\usepackage{geometry}
+\usepackage{verbatim}
+
+\geometry{
+  a4paper,
+  top=25mm, 
+  right=15mm, 
+  bottom=25mm, 
+  left=15mm
+}
+
+\begin{document}
+\setcounter{tocdepth}{4}
+\begin{center}
+    Федеральное государственное автономное образовательное учреждение высшего образования "Национальный Исследовательский Университет ИТМО"\\ 
+    Мегафакультет Компьютерных Технологий и Управления\\
+    Факультет Программной Инженерии и Компьютерной Техники \\
+    \includegraphics[scale=0.3]{image/itmo.jpg} % нужно закинуть картинку логтипа в папку с отчетом
+\end{center}
+\vspace{1cm}
+
+
+\begin{center}
+    \textbf{Лабораторная работа №3}\\
+    по дисциплине\\
+    \textbf{'Информационные системы и базы данных'}\\
+    \textbf{Вариант 564738291}
+\end{center}
+
+\vspace{2cm}
+
+\begin{flushright}
+  Выполнил Студент  группы P33102\\
+  \textbf{Лапин Алексей Александрович}\\
+  Преподаватель: \\
+  \textbf{Сагайдак Алина Алексеевна}\\
+\end{flushright}
+
+\vspace{6cm}
+\begin{center}
+    г. Санкт-Петербург\\
+    2023г.
+\end{center}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Текст задания.}
+По варианту, выданному преподавателем, составить и выполнить запросы к базе данных "Учебный процесс".\\
+Команда для подключения к базе данных ucheb:\\
+psql -h pg -d ucheb\\
+Составить запросы на языке SQL (пункты 1-7).
+\begin{enumerate}
+  \item 
+    \begin{verbatim}
+    Сделать запрос для получения атрибутов из указанных таблиц, применив фильтры по указанным условиям:
+    Н_ТИПЫ_ВЕДОМОСТЕЙ, Н_ВЕДОМОСТИ.
+    Вывести атрибуты: Н_ТИПЫ_ВЕДОМОСТЕЙ.НАИМЕНОВАНИЕ, Н_ВЕДОМОСТИ.ЧЛВК_ИД.
+    Фильтры (AND):
+    a) Н_ТИПЫ_ВЕДОМОСТЕЙ.ИД < 2.
+    b) Н_ВЕДОМОСТИ.ЧЛВК_ИД = 105590.
+    Вид соединения: LEFT JOIN.
+  \end{verbatim}
+  \item \begin{verbatim}
+    Сделать запрос для получения атрибутов из указанных таблиц, применив фильтры по указанным условиям:
+    Таблицы: Н_ЛЮДИ, Н_ОБУЧЕНИЯ, Н_УЧЕНИКИ.
+    Вывести атрибуты: Н_ЛЮДИ.ИМЯ, Н_ОБУЧЕНИЯ.НЗК, Н_УЧЕНИКИ.ГРУППА.
+    Фильтры: (AND)
+    a) Н_ЛЮДИ.ИМЯ = Роман.
+    b) Н_ОБУЧЕНИЯ.ЧЛВК_ИД = 112514.
+    c) Н_УЧЕНИКИ.ГРУППА > 3100.
+    Вид соединения: INNER JOIN.
+  \end{verbatim}
+  \item \begin{verbatim}
+    Составить запрос, который ответит на вопрос, есть ли среди студентов группы 3102 те, кто не имеет отчества.
+  \end{verbatim}
+  \item \begin{verbatim}
+    Найти группы, в которых в 2011 году было ровно 5 обучающихся студентов на ФКТИУ.
+    Для реализации использовать подзапрос.
+  \end{verbatim}
+  \item \begin{verbatim}
+    Выведите таблицу со средними оценками студентов группы 4100 (Номер, ФИО, Ср_оценка), у которых средняя оценка равна минимальной оценк(е|и) в группе 3100.
+  \end{verbatim}
+  \item \begin{verbatim}
+    Получить список студентов, зачисленных ровно первого сентября 2012 года на первый курс очной или заочной формы обучения. В результат включить:
+    номер группы;
+    номер, фамилию, имя и отчество студента;
+    номер и состояние пункта приказа;
+    Для реализации использовать подзапрос с EXISTS.
+  \end{verbatim}
+  \item \begin{verbatim}
+    Сформировать запрос для получения числа в группе No 3100 отличников.
+  \end{verbatim}
+
+\end{enumerate}
+\definecolor{deepgreen}{RGB}{0,100,0}
+\section{Реализация запросов на SQL.}
+\lstdefinestyle{sql}{language=SQL, 
+  basicstyle=\small\ttfamily,
+  commentstyle=\color{deepgreen},
+  stringstyle=\color{magenta}\ttfamily,
+  keywordstyle=\color{blue},
+  numbers=left,
+  numberstyle=\scriptsize,
+  numbersep=5pt,
+  frame=single,
+  breaklines=true,
+  breakatwhitespace=true,
+  showstringspaces=false,
+  tabsize=4,
+  inputencoding=utf8,
+  extendedchars=true,
+  literate={а}{{\selectfont\char224}}1
+          {б}{{\selectfont\char225}}1
+          {в}{{\selectfont\char226}}1
+          {г}{{\selectfont\char227}}1
+          {д}{{\selectfont\char228}}1
+          {е}{{\selectfont\char229}}1
+          {ё}{{\"e}}1
+          {ж}{{\selectfont\char230}}1
+          {з}{{\selectfont\char231}}1
+          {и}{{\selectfont\char232}}1
+          {й}{{\selectfont\char233}}1
+          {к}{{\selectfont\char234}}1
+          {л}{{\selectfont\char235}}1
+          {м}{{\selectfont\char236}}1
+          {н}{{\selectfont\char237}}1
+          {о}{{\selectfont\char238}}1
+          {п}{{\selectfont\char239}}1
+          {р}{{\selectfont\char240}}1
+          {с}{{\selectfont\char241}}1
+          {т}{{\selectfont\char242}}1
+          {у}{{\selectfont\char243}}1
+          {ф}{{\selectfont\char244}}1
+          {х}{{\selectfont\char245}}1
+          {ц}{{\selectfont\char246}}1
+          {ч}{{\selectfont\char247}}1
+          {ш}{{\selectfont\char248}}1
+          {щ}{{\selectfont\char249}}1
+          {ъ}{{\selectfont\char250}}1
+          {ы}{{\selectfont\char251}}1
+          {ь}{{\selectfont\char252}}1
+          {э}{{\selectfont\char253}}1
+          {ю}{{\selectfont\char254}}1
+          {я}{{\selectfont\char255}}1
+          {А}{{\selectfont\char192}}1
+          {Б}{{\selectfont\char193}}1
+          {В}{{\selectfont\char194}}1
+          {Г}{{\selectfont\char195}}1
+          {Д}{{\selectfont\char196}}1
+          {Е}{{\selectfont\char197}}1
+          {Ё}{{\"E}}1
+          {Ж}{{\selectfont\char198}}1
+          {З}{{\selectfont\char199}}1
+          {И}{{\selectfont\char200}}1
+          {Й}{{\selectfont\char201}}1
+          {К}{{\selectfont\char202}}1
+          {Л}{{\selectfont\char203}}1
+          {М}{{\selectfont\char204}}1
+          {Н}{{\selectfont\char205}}1
+          {О}{{\selectfont\char206}}1
+          {П}{{\selectfont\char207}}1
+          {Р}{{\selectfont\char208}}1
+          {С}{{\selectfont\char209}}1
+          {Т}{{\selectfont\char210}}1
+          {У}{{\selectfont\char211}}1
+          {Ф}{{\selectfont\char212}}1
+          {Х}{{\selectfont\char213}}1
+          {Ц}{{\selectfont\char214}}1
+          {Ч}{{\selectfont\char215}}1
+          {Ш}{{\selectfont\char216}}1
+          {Щ}{{\selectfont\char217}}1
+          {Ъ}{{\selectfont\char218}}1
+          {Ы}{{\selectfont\char219}}1
+          {Ь}{{\selectfont\char220}}1
+          {Э}{{\selectfont\char221}}1
+          {Ю}{{\selectfont\char222}}1
+          {Я}{{\selectfont\char223}}1
+}
+\lstset{style=sql}
+\lstinputlisting[style=sql]{../src/queries.sql}
+
+\section{Выводы по работе.}
+В ходе выполнения лабораторной работы №3 были изучены
+составление запросов на языке SQL,
+разные виды соединения таблиц,
+подзапросы,
+фильтры,
+логические операторы,
+выборка данных из таблиц.
+\end{document}
