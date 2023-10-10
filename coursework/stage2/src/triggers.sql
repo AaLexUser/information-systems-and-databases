@@ -20,7 +20,7 @@ FOR EACH ROW EXECUTE PROCEDURE updateTotalPrice();
 
 CREATE TRIGGER totalItemQuantityTrigger
 BEFORE INSERT ON "orderItems"
-FOR EACH ROW EXECUTE PROCEDURE updateTotalItemQuantity();
+FOR EACH ROW EXECUTE PROCEDURE updateTotalPrice();
 
 CREATE OR REPLACE FUNCTION updateTotalItemQuantity() RETURNS TRIGGER AS $$
 BEGIN
