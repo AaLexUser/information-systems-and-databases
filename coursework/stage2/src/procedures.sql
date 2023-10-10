@@ -6,6 +6,34 @@ INSERT INTO orders values (DEFAULT, trainerId,
 DEFAULT, DEFAULT);
 $$ LANGUAGE SQL;
 
+CREATE or replace FUNCTION addNewEntity(newEntityType varchar(32))
+RETURNS void AS $$
+    insert into entities values (default, newEntityType);
+$$ LANGUAGE SQL;
+
+CREATE or replace FUNCTION addNewStone(name varchar(32))
+RETURNS void AS $$
+    select addNewEntity('STONE');
+    insert into stonewiki values ((select id from entities order by entities.id DESC limit 1), name);
+$$ LANGUAGE SQL;
+
+
+select* from entities;
+
+CREATE or replace FUNCTION addNewItenToStore(
+wareId int, count int, price money)
+RETURNS void AS $$
+begin
+    if((select count(*) from instock where instock.entityid=wareId)>0)
+        then
+            perform increaser(wareId, count);
+        else
+            insert into instock values (default, wareId, count, price);
+    end if;
+end;
+$$ LANGUAGE plpgsql;
+
+
 CREATE or replace FUNCTION addToOrder(
 orderId int, itemId int, itemCount int)
 RETURNS void AS $$
@@ -31,18 +59,5 @@ RETURNS void AS $$
 update orders set statusid=orderStatus where orders.id=orderID;
 $$ LANGUAGE SQL;
 
-select setOrderStatus(33, 2);
-select setOrderStatus(30, 1);
 
-select * from "orderItems" where orderid=33;
-SELECT * FROM orders ORDER BY id DESC LIMIT 2;
-select * from instock;
-select addToOrder(33, 4, 1);
-select addNewOrder(2);
-
-select addNewOrder(2);
-
-
-select quantity, itemid
-        from "orderItems" where "orderItems".orderid=31;
 

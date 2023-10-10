@@ -213,13 +213,13 @@ INSERT INTO entities values (DEFAULT, 'POKEMON');
 INSERT INTO pokemon values (30, 30, 22);
 
 
-INSERT INTO entities values (1100, 'STONE');
-INSERT INTO stonewiki values (1100, 'Thunder Stone');
-INSERT INTO evolutionchains values (25, 26, 1100);
+INSERT INTO entities values (DEFAULT, 'STONE');
+INSERT INTO stonewiki values (31, 'Thunder Stone');
+INSERT INTO evolutionchains values (25, 26, 31);
 
-INSERT INTO entities values (1101, 'STONE');
-INSERT INTO stonewiki values (1101, 'Ice Stone');
-INSERT INTO evolutionchains values (29, 30, 1101);
+INSERT INTO entities values (DEFAULT, 'STONE');
+INSERT INTO stonewiki values (32, 'Ice Stone');
+INSERT INTO evolutionchains values (29, 30, 32);
 
 INSERT INTO instock values (DEFAULT, 1, 2, 100);
 DO $$

@@ -51,6 +51,7 @@ BEGIN
         loop
         perform increaser(mviews.itemid, mviews.quantity);
         end loop;
+        update "orderItems" set quantity=0 where "orderItems".orderid=new.id;
     END IF;
 
     RETURN NEW;
