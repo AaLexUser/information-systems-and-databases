@@ -7,6 +7,7 @@ RETURNS bool AS $$
     end;
 $$ LANGUAGE plpgsql;
 
+
 /*узнать тип*/
 CREATE or replace FUNCTION whatTypeIs(
 pokId int)
@@ -20,3 +21,15 @@ orderId int)
 RETURNS int AS $$
 (select statusid from orders where orders.id=orderId);
 $$ LANGUAGE SQL;
+
+/*добавить харки тренера*/
+CREATE or replace FUNCTION addTrainerStyle(
+HisPhysicalsWeeper integer, HisSpecialSweeper integer,
+hisWall integer, hisPhysicalTank integer, hisSpecialTank integer )
+RETURNS integer AS $$
+    begin
+        INSERT INTO gamestylesdist values (default, HisPhysicalsWeeper,
+        HisSpecialSweeper, hisWall, hisPhysicalTank, hisSpecialTank);
+        return (select gamestylesdist.id from gamestylesdist order by gamestylesdist.id desc limit 1);
+    end;
+$$ LANGUAGE plpgsql;

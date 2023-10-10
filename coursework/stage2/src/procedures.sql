@@ -59,5 +59,19 @@ RETURNS void AS $$
 update orders set statusid=orderStatus where orders.id=orderID;
 $$ LANGUAGE SQL;
 
+CREATE or replace FUNCTION addTrainer(
+name varchar(32), gender varchar(32), trainerLevel integer, styleId integer)
+RETURNS void AS $$
+insert into trainers values (default, name, gender, trainerLevel, styleId);
+$$ LANGUAGE SQL;
+
+CREATE or replace FUNCTION addPokemonToTrainer(
+pokemonId integer, trainerId integer)
+RETURNS void AS $$
+insert into trainersentities values (trainerId, (select pokemon.entityid from pokemon where pokemon.pokemonwikiid=pokemonId));
+$$ LANGUAGE SQL;
+
+
+
 
 
