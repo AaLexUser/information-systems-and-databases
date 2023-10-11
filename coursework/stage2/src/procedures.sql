@@ -33,14 +33,6 @@ begin
 end;
 $$ LANGUAGE plpgsql;
 
-
-CREATE or replace FUNCTION addToOrder(
-orderId int, itemId int, itemCount int)
-RETURNS void AS $$
-insert into "orderItems" values (orderId, itemId, itemCount);
-select decreaser(itemId, itemCount);
-$$ LANGUAGE SQL;
-
 CREATE or replace FUNCTION decreaser(
 itemId int, itemCount int)
 RETURNS void AS $$
@@ -51,6 +43,13 @@ CREATE or replace FUNCTION increaser(
 itemId int, itemCount int)
 RETURNS void AS $$
 update instock set quantity=quantity+itemCount where instock.entityid=itemId;
+$$ LANGUAGE SQL;
+
+CREATE or replace FUNCTION addToOrder(
+orderId int, itemId int, itemCount int)
+RETURNS void AS $$
+insert into "orderItems" values (orderId, itemId, itemCount);
+select decreaser(itemId, itemCount);
 $$ LANGUAGE SQL;
 
 CREATE or replace FUNCTION setOrderStatus(

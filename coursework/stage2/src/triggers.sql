@@ -13,12 +13,12 @@ $$
     LANGUAGE plpgsql;
 
 
-CREATE trigger totalPriceTrigger
+CREATE or replace trigger totalPriceTrigger
 after INSERT on "orderItems"
 FOR EACH ROW EXECUTE PROCEDURE updateTotalPrice();
 
 
-CREATE TRIGGER totalItemQuantityTrigger
+CREATE or replace TRIGGER totalItemQuantityTrigger
 BEFORE INSERT ON "orderItems"
 FOR EACH ROW EXECUTE PROCEDURE updateTotalPrice();
 
@@ -34,10 +34,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-CREATE TRIGGER resetInstokeTrigger
-BEFORE update ON orders
-FOR EACH ROW EXECUTE PROCEDURE resetInstoke();
 
 CREATE OR REPLACE FUNCTION resetInstoke() RETURNS TRIGGER AS $$
 declare mviews record;
@@ -58,5 +54,8 @@ BEGIN
 END
 $$ LANGUAGE plpgsql;
 
+CREATE or replace TRIGGER resetInstokeTrigger
+BEFORE update ON orders
+FOR EACH ROW EXECUTE PROCEDURE resetInstoke();
 
 
