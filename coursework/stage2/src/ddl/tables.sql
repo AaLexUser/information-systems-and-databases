@@ -56,9 +56,10 @@ CREATE TABLE IF NOT EXISTS evolutionChains(
 
 CREATE TABLE IF NOT EXISTS inStock(
     id       serial            PRIMARY KEY,
-    entityID integer           NOT NULL REFERENCES entities(id) ON DELETE CASCADE,
+    entityID integer           NOT NULL UNIQUE REFERENCES entities(id) ON DELETE CASCADE,
     quantity integer           NOT NULL CHECK ( quantity >= 0),
     price    money             NOT NULL CHECK ( price >= CAST(0 AS money))
+    
 );
 
 CREATE TABLE IF NOT EXISTS gameStylesDist(

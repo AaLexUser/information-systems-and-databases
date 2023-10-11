@@ -18,10 +18,6 @@ after INSERT on "orderItems"
 FOR EACH ROW EXECUTE PROCEDURE updateTotalPrice();
 
 
-CREATE TRIGGER totalItemQuantityTrigger
-BEFORE INSERT ON "orderItems"
-FOR EACH ROW EXECUTE PROCEDURE updateTotalPrice();
-
 CREATE OR REPLACE FUNCTION updateTotalItemQuantity() RETURNS TRIGGER AS $$
 BEGIN
     IF ( (SELECT COUNT(*) FROM "orderItems" WHERE "orderItems".itemid = NEW.itemid and "orderItems".orderid = NEW.orderid) >= 1 )
@@ -34,10 +30,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-CREATE TRIGGER resetInstokeTrigger
-BEFORE update ON orders
-FOR EACH ROW EXECUTE PROCEDURE resetInstoke();
 
 CREATE OR REPLACE FUNCTION resetInstoke() RETURNS TRIGGER AS $$
 declare mviews record;
@@ -58,5 +50,8 @@ BEGIN
 END
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE TRIGGER resetInstokeTrigger
+BEFORE update ON orders
+FOR EACH ROW EXECUTE PROCEDURE resetInstoke();
 
 
