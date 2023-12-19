@@ -254,12 +254,12 @@ DO $$
 BEGIN
     FOR i IN 1..30 LOOP
         FOR j IN 1..floor(random() * 30 + 1)::integer LOOP
-                INSERT INTO "orderItems" values (i, j, floor(random() * 5 + 1)::integer);
+                INSERT INTO orderitems values (i, j, floor(random() * 5 + 1)::integer);
         END LOOP;
     END LOOP;
 END$$;
 
-INSERT INTO "orderItems" values (22, 28, 2);
+INSERT INTO orderitems values (22, 28, 2);
 
 
 

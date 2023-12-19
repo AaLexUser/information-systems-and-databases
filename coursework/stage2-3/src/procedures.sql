@@ -48,7 +48,7 @@ $$ LANGUAGE SQL;
 CREATE or replace FUNCTION addToOrder(
 orderId int, itemId int, itemCount int)
 RETURNS void AS $$
-insert into "orderItems" values (orderId, itemId, itemCount);
+insert into orderitems values (orderId, itemId, itemCount);
 select decreaser(itemId, itemCount);
 $$ LANGUAGE SQL;
 

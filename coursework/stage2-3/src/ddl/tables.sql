@@ -74,7 +74,8 @@ CREATE TABLE IF NOT EXISTS gameStylesDist(
 
 CREATE TABLE IF NOT EXISTS trainers(
     id          serial            PRIMARY KEY,
-    nickname    varchar(32)       NOT NULL UNIQUE ,
+    firstname   varchar(32)       NOT NULL,
+    lastname    varchar(32)       NOT NULL,
     gender      varchar(32)       NOT NULL CHECK ( gender in ('MALE', 'FEMALE') ),
     level       integer           NOT NULL CHECK ( level >= 0),
     gameStyleID integer           REFERENCES gameStylesDist(id) ON DELETE SET NULL
@@ -96,12 +97,21 @@ CREATE TABLE IF NOT EXISTS orders(
     trainerID   integer          NOT NULL REFERENCES trainers(id) ON DELETE CASCADE,
     statusID    integer          REFERENCES orderStatuses(id) ON DELETE SET NULL,
     totalPrice  integer          NOT NULL CHECK ( totalPrice >= 0 ) DEFAULT 0,
-    orderDate   date             NOT NULL CHECK (orderDate <= CURRENT_DATE) DEFAULT CURRENT_DATE
+    orderDate   timestamp(6)     NOT NULL CHECK (orderDate <= CURRENT_DATE) DEFAULT CURRENT_DATE
 );
 
-CREATE TABLE IF NOT EXISTS "orderItems"(
+CREATE TABLE IF NOT EXISTS orderitems(
     orderID     integer          NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
     itemID      integer          NOT NULL REFERENCES inStock(id) ON DELETE CASCADE,
     quantity    integer          NOT NULL CHECK ( quantity >= 0),
     PRIMARY KEY (orderID, itemID)
+);
+
+CREATE TABLE IF NOT EXISTS _user(
+    id          serial            PRIMARY KEY,
+    username    varchar(255)      NOT NULL UNIQUE,
+    password    varchar(255)      NOT NULL,
+    avatar      varchar(255),
+    trainerID   integer           REFERENCES trainers(id) ON DELETE CASCADE,
+    role        varchar(255)      check (role in ('USER','ADMIN'))
 );
