@@ -20,7 +20,8 @@ CREATE TABLE IF NOT EXISTS pokemonWiki(
     species     varchar(32)       NOT NULL CHECK ( species ~* '^[a-zé\s]+$'),
     height      float             NOT NULL CHECK ( height >= 0 ),
     weight      float             NOT NULL CHECK ( weight >= 0 ),
-    baseStatsID integer           NOT NULL REFERENCES baseStats(id) ON DELETE CASCADE
+    baseStatsID integer           NOT NULL REFERENCES baseStats(id) ON DELETE CASCADE,
+    pokemonImageLink text         NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS pokemon(
