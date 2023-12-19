@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS trainersEntities;
 DROP TABLE IF EXISTS orderItems;
 DROP TABLE IF EXISTS evolutionChains;
-DROP TABLE IF EXISTS pokemonToTypes;
+DROP TABLE IF EXISTS pokemonToTypes CASCADE;
 DROP TABLE IF EXISTS pokemon;
 DROP TABLE IF EXISTS stoneWiki;
 DROP TABLE IF EXISTS pokemonWiki;

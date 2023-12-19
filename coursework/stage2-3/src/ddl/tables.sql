@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS inStock(
     id       serial            PRIMARY KEY,
     entityID integer           NOT NULL UNIQUE REFERENCES entities(id) ON DELETE CASCADE,
     quantity integer           NOT NULL CHECK ( quantity >= 0),
-    price    money             NOT NULL CHECK ( price >= CAST(0 AS money))
+    price    integer           NOT NULL CHECK ( price >= 0)
     
 );
 
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS orders(
     id          serial           PRIMARY KEY,
     trainerID   integer          NOT NULL REFERENCES trainers(id) ON DELETE CASCADE,
     statusID    integer          REFERENCES orderStatuses(id) ON DELETE SET NULL,
-    totalPrice  money            NOT NULL CHECK ( totalPrice >= CAST(0 AS money)) DEFAULT CAST(0 AS money),
+    totalPrice  integer          NOT NULL CHECK ( totalPrice >= 0 ) DEFAULT 0,
     orderDate   date             NOT NULL CHECK (orderDate <= CURRENT_DATE) DEFAULT CURRENT_DATE
 );
 
